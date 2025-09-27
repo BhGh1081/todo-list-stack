@@ -18,7 +18,7 @@ export async function seedUsers(){
         users.map (async (user) => {
         const hashPassword = await bcrypt.hash(user.password, 10)
         const userData= await sql <{id: string}[]>`
-        INSERT INTO users(id, name, email, password)
+        INSERT INTO users(name, email, password)
         VALUES (${user.name}, ${user.email}, ${hashPassword})
         ON CONFLICT (email) DO NOTHING
         RETURNING id`;
@@ -43,7 +43,7 @@ export async function seedTasks(userId: string[]){
 
     const insertTasks = await Promise.all (
         tasks.map((task, index) => sql `
-            INSERT INTO tasks (id, user_id, title, description, category)
+            INSERT INTO tasks (user_id, title, description, category)
             VALUES(${userId[index]}, ${task.title}, ${task.description}, ${task.category})
             ON CONFLICT (title) DO NOTHING;`
         )
