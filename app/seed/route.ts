@@ -1,7 +1,6 @@
 import postgres from 'postgres';
 import {users, tasks} from '@/app/lib/placeholder-data';
 import bcrypt from 'bcrypt';
-import { error } from 'console';
 
 const sql = postgres(process.env.PSRGRES_URL!, {ssl:'require'});
 
@@ -49,7 +48,7 @@ export async function seedTasks(){
     )
 }
 
-export async function Get(){
+export async function GET(){
     try{
         const result = await sql.begin((aql) => [
             seedUsers(),
