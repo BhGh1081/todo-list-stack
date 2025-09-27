@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ListLogo } from "@/app/ui/listLogo";
 import { SideBar } from "@/app/ui/sideBar";
 

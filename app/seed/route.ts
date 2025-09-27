@@ -1,6 +1,7 @@
 import postgres from 'postgres';
 import {users, tasks} from '@/app/lib/placeholder-data';
 import bcrypt from 'bcrypt';
+import { error } from 'console';
 
 const sql = postgres(process.env.PSRGRES_URL!, {ssl:'require'});
 
@@ -47,3 +48,15 @@ export async function seedTasks(){
         )
     )
 }
+
+export async function Get(){
+    try{
+        const result = await sql.begin((aql) => [
+            seedUsers(),
+            seedTasks()
+        ])
+        return Response.json({message: 'Database seed successfully'});
+    }catch(error){
+        return Response.json({error}, {status: 500});
+    }
+} 
