@@ -8,8 +8,8 @@ export async function SideBar(){
             <h1 className="text-foreground font-inter">Categories</h1>
             <ul>
             {
-                Categories.map((t) => 
-                    <li>{t}</li>
+                Categories.map((t, index) => 
+                    <li key={index}>{t}</li>
                 )
             }
             </ul>
