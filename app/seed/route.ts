@@ -10,7 +10,7 @@ export async function seedUsers(){
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email TEXT NOT NULL UNIQUE,
-    password TExt NOU NULL) `;
+    password TEXT NOT NULL) `;
 
     console.log('user table created');
 
@@ -46,6 +46,7 @@ export async function seedTasks(){
             ON CONFLICT (id) DO NOTHING;`
         )
     );
+    return insertTasks;
 }
 
 export async function GET(){
