@@ -14,21 +14,23 @@ export async function seedUsers(){
 
     console.log('user table created');
 
-    const insertUser = await Promise.all(
+    const userId = await Promise.all(
         users.map (async (user) => {
         const hashPassword = await bcrypt.hash(user.password, 10)
-        return sql`
+        const userData= await sql <{id: string}[]>`
         INSERT INTO users(id, name, email, password)
-        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashPassword})
-        ON CONFLICT (id) DO NOTHING`
+        VALUES (${user.name}, ${user.email}, ${hashPassword})
+        ON CONFLICT (email) DO NOTHING
+        RETURNING id`;
+        return userData[0].id
     })
     );
     console.log('data added');
-    return insertUser;
+    return userId;
 }
 
 
-export async function seedTasks(){
+export async function seedTasks(userId: string[]){
     await sql `CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
     await sql `CREATE TABLE IF NOT EXISTS tasks(
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -40,10 +42,10 @@ export async function seedTasks(){
     console.log('tasks table created');
 
     const insertTasks = await Promise.all (
-        tasks.map((task) => sql `
+        tasks.map((task, index) => sql `
             INSERT INTO tasks (id, user_id, title, description, category)
-            VALUES(${task.id}, ${task.user_id}, ${task.title}, ${task.description}, ${task.category})
-            ON CONFLICT (id) DO NOTHING;`
+            VALUES(${userId[index]}, ${task.title}, ${task.description}, ${task.category})
+            ON CONFLICT (title) DO NOTHING;`
         )
     );
     return insertTasks;
@@ -51,10 +53,8 @@ export async function seedTasks(){
 
 export async function GET(){
     try{
-        const result = await sql.begin((aql) => [
-            seedUsers(),
-            seedTasks()
-        ])
+        const userId = await seedUsers();
+        await seedTasks(userId);
         return Response.json({message: 'Database seed successfully'});
     }catch(error){
         return Response.json({error}, {status: 500});
