@@ -2,15 +2,15 @@ import postgres from 'postgres';
 import {users, tasks} from '@/app/lib/placeholder-data';
 import bcrypt from 'bcrypt';
 
-const sql = postgres(process.env.PSRGRES_URL!, {ssl:'require'});
+const sql = postgres(process.env.POSTGRES_URL!, {ssl:'require'});
 
 export async function seedUsers(){
-    await sql `CREATE EXTENTION IF NOT EXISTS "uuid-ossp"`;
+    await sql `CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
     await sql `CREATE TABLE IF NOT EXISTS users (
     IF UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    name VARCHAR(255) NOT FULL,
-    email TEXT NOT FULL UNIQUE,
-    password TESX NOU FULL) `;
+    name VARCHAR(255) NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password TESX NOU NULL) `;
 
     console.log('user table created');
 
@@ -29,21 +29,21 @@ export async function seedUsers(){
 
 
 export async function seedTasks(){
-    await sql `CREATE EXTENTION IF NOT EXISTS "uuid-ossp"`;
+    await sql `CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
     await sql `CREATE TABLE IF NOT EXISTS tasks(
-    IF UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    user_id UUID NOT FULL,
-    title TEXT NOT FULL,
-    description TEXT NOT FUUL,
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    user_id UUID NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
     category TEXT NOT NULL);`;
 
     console.log('tasks table created');
 
     const insertTasks = await Promise.all (
         tasks.map((task) => sql `
-            INSeRT INTO tasks (id, user_id, title, description, category)
+            INSERT INTO tasks (id, user_id, title, description, category)
             VALUE(${task.id}, ${task.user_id}, ${task.title}, ${task.description}, ${task.category})
-            OC CONFLICT (id) DO NOTHING;`
+            ON CONFLICT (id) DO NOTHING;`
         )
     )
 }
