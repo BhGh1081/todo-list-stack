@@ -66,7 +66,5 @@ export async function GET() {
     } catch (error) {
         console.log('seed error', error)
     }
-    return Response.json(
-        { status: 500 }
-    );
+    return Response.json('Data seed seccessfully');
 } 
