@@ -35,8 +35,9 @@ export async function seedTasks(userId: string[]) {
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     user_id UUID NOT NULL,
     title TEXT NOT NULL,
-    description TEXT NOT NULL,
-    category TEXT NOT NULL);`;
+    description TEXT,
+    category TEXT,
+    date DATE`;
 
     console.log('tasks table created');
 
@@ -50,7 +51,7 @@ export async function seedTasks(userId: string[]) {
                 category: task.category
             });
             return sql`
-            INSERT INTO tasks (user_id, title, description, category)
+            INSERT INTO tasks (user_id, title, description, category, date)
             VALUES(${userId[index]}, ${task.title}, ${task.description}, ${task.category});`
         })
     );
