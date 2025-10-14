@@ -1,13 +1,13 @@
 'use client';
 
-import { useSession, signOut } from "next-auth/react";
+//import { useSession, signOut } from "next-auth/react";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 
 export default function LogButton() {
 
-    const { data: session } = useSession();
+/*     const { data: session } = useSession();
 
     if (session?.user?.id) {
 
@@ -20,7 +20,7 @@ export default function LogButton() {
                 <ArrowRightIcon className="w-5" />
             </button >
         )
-    }
+    } */
 
     return(
         <Link href="/login"

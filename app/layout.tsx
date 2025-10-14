@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { lusitana } from "./ui/font";
 import "./ui/globals.css";
-import { Provider } from "./provider";
+//import { Provider } from "./provider";
 
 
 
@@ -19,9 +19,7 @@ export default function RootLayout({ children, }:
       <body
         className={`${lusitana.variable} antialiased`}
       >
-        <Provider>
           {children}
-        </Provider>
       </body>
     </html>
   );

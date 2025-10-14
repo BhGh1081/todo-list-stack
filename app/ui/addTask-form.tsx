@@ -1,7 +1,9 @@
 'use client'
 
 import { useState } from "react";
-import dynamic from "next/dynamic";
+import { useActionState } from "react";
+import { addTask } from "../lib/action";
+import { Select } from "./button";
 
 
 interface optionType {
@@ -11,11 +13,10 @@ interface optionType {
 
 export default function AddTaskForm({ categories }: { categories: string[] }) {
 
-    const Select = dynamic(() => import('react-select'), { ssr: false });
     const [selectValue, setSelectValue] = useState<optionType | null>(null);
+    const [erMessage, formAction, isPending] = useActionState(addTask, undefined);
 
     const category: optionType[] = categories.map((t) => ({ value: t, label: t }))
-    console.log('category is:', category);
 
 
     return (
@@ -23,45 +24,29 @@ export default function AddTaskForm({ categories }: { categories: string[] }) {
             <div className="w-full text-center py-8">
                 <strong>Add New Task</strong>
             </div>
-            <form>
+            <form action={formAction}>
                 <div className="flex flex-col mb-6">
-                    <label htmlFor="title">Enter new task title</label>
+                    <label htmlFor="title">Enter new task title <span className="text-red-500">*</span></label>
                     <input
                         type="text"
                         name="title"
                         id="titel"
                         placeholder="Enter Task Title"
+                        required
                         className="text-sm bg-white h-[40px] rounded px-2 focus:outline-purple-500 focus:outline-[1.5px]" />
                 </div>
                 <div className="flex flex-col mb-6">
-                    <label htmlFor="describtion">Write discribtion for task</label>
+                    <label htmlFor="description">Write discribtion for task</label>
                     <input
                         type="text"
                         name="description"
-                        id="describtion"
-                        placeholder="Write Describtion"
+                        id="description"
+                        placeholder="Write Description"
                         className="text-sm bg-white h-[40px] px-2 rounded focus:outline-purple-500 focus:outline-[1.5px]" />
                 </div>
                 <div className="flex flex-col mb-6">
                     <label htmlFor="category">Select er enter a category</label>
-                    <Select
-                        options={category}
-                        value={selectValue}
-                        onChange={(e) => setSelectValue(e as optionType | null)}
-                        placeholder='Select Category'
-                        isClearable
-                        isSearchable
-                        styles={{
-                            control: (base, state) => ({
-                                ...base,
-                                height: 40,
-                                borderColor: state.isFocused ? "#7c3aed" : base.borderColor,
-                                boxShadow: state.isFocused ? "0 0 0 0.5px #7c3aed" : base.boxShadow,
-                                "&:hover": {
-                                    borderColor: state.isFocused ? "#7c3aed" : base.borderColor,
-                                },
-                            })}}
-                            />
+                    <Select categories={categories} />
                 </div>
                 <div className="flex flex-col mb-6">
                     <label htmlFor="date">Date of do task</label>
