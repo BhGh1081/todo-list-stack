@@ -7,11 +7,11 @@ import clsx from "clsx";
 export function ListLogo({className}: {className?: string}) {
 
     return (
-        <div className={clsx('font-lusitana items-center p-4 bg-primary', className)}>
-            <div className="flex flex-3 gap-4 items-center">
-                <Bars3Icon className="block h-12 w-12 md:hidden" />
-                <LuListTodo className="hidden h-9 w-9 md:block" />
-                <strong className="text-[26px] font-mono">Tasks</strong>
+        <div className={clsx('flex items-center font-lusitana py-3 px-4 md:pt-30 rounded-md bg-primary', className)}>
+            <div className="flex flex-3 items-center gap-2">
+                <Bars3Icon className="block h-9 w-10 md:h-14 md:w-14 md:hidden" />
+                <LuListTodo className="hidden h-12 w-12 md:block" />
+                <strong className="text-[28px] md:text-[36px] font-mono text-center">Tasks</strong>
             </div>
         </div>
     )

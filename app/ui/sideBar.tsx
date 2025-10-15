@@ -4,29 +4,40 @@ import '@/app/ui/globals.css';
 import { useState } from 'react';
 import clsx from 'clsx';
 import LogButton from './log-button';
+import SignOutAction from './signOutButton';
+import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 
 
-export function SideBar({ categories }:{ categories: string[]}) {
+export function SideBar({ isLogedIn }: { isLogedIn: boolean }) {
 
     const [isSelect, setIsSelect] = useState<string>("")
+    const status = ['All', 'completed', 'incompleted']
 
     //const Categories = ['Work', 'Personal']
     return (
-        <div className="md:flex flex-1 flex-col justify-space-between bg-gray-100 gap-2 pb-10">
-            <div className="flex flex-1 md:flex-col gap-2">
+        <div className="md:flex md:flex-1 flex-col">
+            <div className="flex flex-row grow md:justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
                 {
-                    categories.map((t, index) =>
-                        <div className={clsx("flex h-[48px] px-4 items-center bg-gray-50 text-foreground hover:bg-purple-100 hover:text-primary hover:cursor-pointer",{'bg-purple-100 text-primary': t === isSelect})}
+                    status.map((t, index) =>
+                        <div className={clsx("flex h-[48px] px-4 items-center bg-gray-50 text-foreground rounded-md hover:bg-teal-50 hover:text-primary hover:cursor-pointer", { 'bg-teal-50 text-primary': t === isSelect })}
                             key={index}
                             onClick={() => setIsSelect(t)}>
                             <strong>{t}</strong>
                         </div>
                     )
                 }
+                <div className='hidden h-auto w-full grow rounded-md bg-gray-50 md:block'></div>
+                <div className='hidden w-full md:flex p-4 rounded-md bg-gray-50'>
+                    {isLogedIn ?
+                        <form action={SignOutAction} className='w-full'>
+                            <button className='flex w-full space-x-3 justify-center items-center text-white bg-primary px-4 py-3 rounded transition-colos hover:bg-secondry whitespace-nowrap'>
+                                <strong>Sign Out</strong>
+                                <ArrowLeftIcon className='w-5' />
+                            </button>
+                        </form> : <LogButton />}
+                </div>
             </div>
-            <div>
-                <LogButton />
-            </div>
+
         </div>
     )
 }

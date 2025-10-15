@@ -16,7 +16,7 @@ export default function LoginForm() {
     return (
         <form action={formAction} className="space-y-3" >
             <div className="relative max-w-[400px] flex flex-col gap-10 items-center justify-center rounded-lg bg-gray-50 px-5 sm:px-10 pt-30">
-                <ListLogo className="w-full absolute top-0"/>
+                <ListLogo className="w-full absolute md:pt-0 top-0"/>
                 <h1 className="text-foreground text-38px ">Login To Continue</h1>
                 <div>
                     <input

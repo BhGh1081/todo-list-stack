@@ -4,9 +4,8 @@ import Credentials from "next-auth/providers/credentials";
 import z from "zod";
 import bcrypt from 'bcrypt';
 import { authConfig } from "./auth.config";
+import sql from "./lib/db";
 
-
-const sql = postgres(process.env.POSTGRES_URL!, {ssl: 'require'})
 
 export async function getUser(email: string) {
    const user = await sql `SELECT * FROM users WHERE email = ${email} `;

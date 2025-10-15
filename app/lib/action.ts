@@ -4,20 +4,19 @@ import postgres from "postgres";
 import { signIn } from '@/app/auth';
 import { AuthError } from "next-auth";
 import { auth } from "@/app/auth";
-import z from "zod";
+import sql from "./db";
 
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
-
-
-
+interface categoriesType {
+    category: string
+}
 export async function getCategories(id: string) {
 
     try {
         const raw = await sql`SELECT category FROM tasks 
         WHERE user_id = ${id}`;
 
-        const categories = raw.map((r) => r.category as string);
+        const categories = raw.map((r:categoriesType) => r.category as string);
 
         return categories;
     } catch {
@@ -46,18 +45,32 @@ export async function addTask(prevState: void | undefined, formData: FormData) {
     const userId = session!.user!.id as string;
 
     const title = formData.get('title') as string;
-    const describtion = formData.get('description') as string| null;
+    const describtion = formData.get('description') as string | null;
     const category = formData.get('category') as string | null;
     let date = (formData.get('date') as string | null)
 
-    if(!date)
-        date =  new Date().toISOString();
+    if (!date)
+        date = new Date().toISOString();
 
     try {
-        await sql`INSERT INTO tasks(user_id, title, description, category, date)
-        VALUES (${userId}, ${title}, ${describtion || null}, ${category || null}, ${date})`;
+        await sql`INSERT INTO tasks(user_id, title, description, category, date, completed)
+        VALUES (${userId}, ${title}, ${describtion || null}, ${category || null}, ${date}, ${false})`;
     } catch (error) {
         console.error(error)
     }
+}
+
+
+
+export async function getTaskWithId(id: string) {
+
+    try {
+        const tasks = await sql`SELECT * FROM tasks WHERE user_id = ${id}`;
+        console.log(tasks);
+        return tasks;
+    } catch(err) {
+        console.error(err, 'Database Error');
+    }
+
 }
 

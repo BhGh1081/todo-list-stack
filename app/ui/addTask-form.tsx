@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from "react";
 import { useActionState } from "react";
 import { addTask } from "../lib/action";
 import { Select } from "./button";
@@ -13,7 +12,6 @@ interface optionType {
 
 export default function AddTaskForm({ categories }: { categories: string[] }) {
 
-    const [selectValue, setSelectValue] = useState<optionType | null>(null);
     const [erMessage, formAction, isPending] = useActionState(addTask, undefined);
 
     const category: optionType[] = categories.map((t) => ({ value: t, label: t }))
