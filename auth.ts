@@ -4,7 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import z from "zod";
 import bcrypt from 'bcrypt';
 import { authConfig } from "./auth.config";
-import sql from "./lib/db";
+import sql from "@/app/lib/db";
 
 
 export async function getUser(email: string) {

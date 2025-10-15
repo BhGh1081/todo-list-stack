@@ -1,9 +1,9 @@
 'use server';
 
 import postgres from "postgres";
-import { signIn } from '@/app/auth';
+import { signIn } from '@/auth';
 import { AuthError } from "next-auth";
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 import sql from "./db";
 
 

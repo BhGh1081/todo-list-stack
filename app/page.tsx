@@ -2,9 +2,8 @@ import { ListLogo } from "@/app/ui/listLogo";
 import { SideBar } from "@/app/ui/sideBar";
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/24/solid";
-import { auth } from "./auth";
+import { auth } from "@/auth";
 import { getTaskWithId } from "./lib/action";
-import { tasks } from "./lib/placeholder-data";
 import Tasks from "./ui/tasks";
 
 export default async function page() {
