@@ -1,4 +1,4 @@
-'use client';
+/* 'use client';
 
 import { useSession } from "next-auth/react";
 
@@ -11,4 +11,4 @@ export default function Card(){
     return(
         <div>{a}</div>
     )
-}
+} */

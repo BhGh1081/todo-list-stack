@@ -1,10 +1,10 @@
 'use server';
 
-import postgres from "postgres";
 import { signIn } from '@/auth';
 import { AuthError } from "next-auth";
 import { auth } from "@/auth";
 import sql from "./db";
+import { redirect } from 'next/navigation';
 
 
 interface categoriesType {
@@ -58,6 +58,7 @@ export async function addTask(prevState: void | undefined, formData: FormData) {
     } catch (error) {
         console.error(error)
     }
+    redirect('/')
 }
 
 
@@ -74,3 +75,14 @@ export async function getTaskWithId(id: string) {
 
 }
 
+export async function taskCheck(id:string) {
+
+    await sql`UPDATE tasks SET completed = NOT completed WHERE id=${id}`
+}
+
+
+export async function deleteTask(id: string){
+
+    await sql`DELETE FROM tasks WHERE id=${id}`;
+    redirect('/');
+}

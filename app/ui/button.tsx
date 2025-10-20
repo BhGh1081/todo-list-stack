@@ -1,8 +1,9 @@
 'use client';
 
 import Link from "next/link";
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { ArrowRightIcon, TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import { deleteTask } from "../lib/action";
 
 export function SignInButton() {
 
@@ -39,4 +40,27 @@ export function Select({categories}:{categories: string[]}) {
         </div>
 
     )
+}
+
+export function DeleteTask({id}:{id: string}){
+
+    const delTaskWithID = deleteTask.bind(null, id)
+
+    return(
+        <form action={delTaskWithID} className="h-7">
+            <button>
+                <TrashIcon className="w-7 sm:w-7" />
+            </button>
+        </form>
+    )
+}
+
+export function EditTask({id}: {id:string}) {
+
+    
+return(
+    <Link href={`/${id}/edit-task`}>
+        <PencilSquareIcon className="w-7 sm:w-7 " />
+    </Link>
+)
 }

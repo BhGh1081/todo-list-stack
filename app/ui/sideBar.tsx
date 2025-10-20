@@ -13,13 +13,12 @@ export function SideBar({ isLogedIn }: { isLogedIn: boolean }) {
     const [isSelect, setIsSelect] = useState<string>("")
     const status = ['All', 'completed', 'incompleted']
 
-    //const Categories = ['Work', 'Personal']
     return (
         <div className="md:flex md:flex-1 flex-col">
             <div className="flex flex-row grow md:justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
                 {
                     status.map((t, index) =>
-                        <div className={clsx("flex h-[48px] px-4 items-center bg-gray-50 text-foreground rounded-md hover:bg-teal-50 hover:text-primary hover:cursor-pointer", { 'bg-teal-50 text-primary': t === isSelect })}
+                        <div className={clsx("flex h-[48px] px-4 items-center bg-gray-50 text-foreground rounded-md hover:bg-cyan-50 hover:text-primary hover:cursor-pointer", { 'bg-teal-50 text-primary': t === isSelect })}
                             key={index}
                             onClick={() => setIsSelect(t)}>
                             <strong>{t}</strong>

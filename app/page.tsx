@@ -25,17 +25,17 @@ export default async function page() {
         <ListLogo />
         <div className="flex items-center absolute right-4 top-5">
           <Link href='/add-task'>
-            <PlusIcon className="w-8 h-8" />
+            <PlusIcon className="md:hidden w-8 h-8" />
           </Link>
         </div>
       </header>
-      <main className="flex flex-col md:flex-row flex-1 space-x-2 justify-between ">
+      <main className="flex flex-col md:flex-row flex-1 space-y-2 md:space-y-0 space-x-2 justify-between ">
 
         <SideBar isLogedIn={isLogedIn} />
-        <div className="flex-3 felx bg-gray-50 p-4 items-center content-center">
+        <div className="flex-3 felx bg-gray-50 rounded p-4">
           {tasks ?
             <Tasks tasks={tasks} /> :
-            <div className="flex flex-col space-y-6 items-center justify-center">
+            <div className="flex flex-col space-y-6 items-center h-full justify-center">
               <img
                 src='image/no-data.svg'
                 className="w-80"
