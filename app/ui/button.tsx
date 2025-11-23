@@ -16,19 +16,18 @@ export function SignInButton() {
 }
 
 
-export function Select({categories}:{categories: string[]}) {
+export function Select({categories, defaultValue}:{categories: string[], defaultValue: string}) {
 
     const [value, setValue] = useState('');
-    console.log(categories);
 
     return (
         <div>
             <input
                 list="categories"
                 name="category"
-                value={value}
                 placeholder="Enter or Select"
                 onChange={(e) => setValue(e.target.value)}
+                defaultValue={defaultValue}
                 className="bg-white w-full h-[40px] text-sm rounded px-2 focus:outline-purple-500 focus:outline-[1.5px]"
             />
             <datalist
@@ -48,7 +47,7 @@ export function DeleteTask({id}:{id: string}){
 
     return(
         <form action={delTaskWithID} className="h-7">
-            <button>
+            <button className="hover:cursor-pointer">
                 <TrashIcon className="w-7 sm:w-7" />
             </button>
         </form>

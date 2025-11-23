@@ -5,6 +5,7 @@ import { AuthError } from "next-auth";
 import { auth } from "@/auth";
 import sql from "./db";
 import { redirect } from 'next/navigation';
+import { title } from 'process';
 
 
 interface categoriesType {
@@ -63,11 +64,10 @@ export async function addTask(prevState: void | undefined, formData: FormData) {
 
 
 
-export async function getTaskWithId(id: string) {
+export async function getUserTasks(id: string) {
 
     try {
         const tasks = await sql`SELECT * FROM tasks WHERE user_id = ${id}`;
-        console.log(tasks);
         return tasks;
     } catch(err) {
         console.error(err, 'Database Error');
@@ -84,5 +84,39 @@ export async function taskCheck(id:string) {
 export async function deleteTask(id: string){
 
     await sql`DELETE FROM tasks WHERE id=${id}`;
+    redirect('/');
+}
+
+export async function getTaskWithId(id:string){
+    try{
+    const task = await sql`SELECT * FROM tasks WHERE id = ${id}`;
+    return task[0];
+    }catch(err){
+        throw new Error('Database Error')
+    }
+
+}
+
+export async function updateTask(formData: FormData){
+
+    const id = formData.get('id') as string
+    const title = formData.get('title') as string;
+    const description = formData.get('description') as string | null;
+    const category = formData.get('category') as string | null;
+    let date = formData.get('date') as string | null;
+
+    if(!date){
+        date = new Date().toISOString();
+    }
+
+    try{
+    await sql`UPDATE tasks SET
+        title = ${title}, description = ${description},
+        category = ${category}, date = ${date}
+        WHERE id = ${id}`;
+    }catch(err){
+        console.error('database error', err)
+        throw new Error('Update Faild');
+    }
     redirect('/');
 }

@@ -13,7 +13,7 @@ export default async function page() {
         categoreis = await getCategories(session?.user.id);
 
     return (
-        <div>
+        <div className="items-center justify-center">
             <AddTaskForm categories={categoreis} />
         </div>
     )

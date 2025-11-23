@@ -14,7 +14,7 @@ export function SideBar({ isLogedIn }: { isLogedIn: boolean }) {
     const status = ['All', 'completed', 'incompleted']
 
     return (
-        <div className="md:flex md:flex-1 flex-col">
+        <div className="md:flex md:flex-1 flex-col w-full">
             <div className="flex flex-row grow md:justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
                 {
                     status.map((t, index) =>
@@ -29,7 +29,7 @@ export function SideBar({ isLogedIn }: { isLogedIn: boolean }) {
                 <div className='hidden w-full md:flex p-4 rounded-md bg-gray-50'>
                     {isLogedIn ?
                         <form action={SignOutAction} className='w-full'>
-                            <button className='flex w-full space-x-3 justify-center items-center text-white bg-primary px-4 py-3 rounded transition-colos hover:bg-secondry whitespace-nowrap'>
+                            <button className='flex w-full space-x-3 justify-center items-center border border-primary border-solid border-3 px-4 py-3 rounded-md transition-colos hover:bg-secondry whitespace-nowrap transition-all duration-300 ease-in-out'>
                                 <strong>Sign Out</strong>
                                 <ArrowLeftIcon className='w-5' />
                             </button>

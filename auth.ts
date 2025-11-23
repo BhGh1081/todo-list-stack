@@ -1,4 +1,3 @@
-import postgres from "postgres";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import z from "zod";
@@ -28,7 +27,6 @@ export const {auth, signIn, signOut} = NextAuth ({
 
                 const passwordMatch = await bcrypt.compare(password, user.password)
                 if(passwordMatch){
-                    console.log(user);
                     return user;
                 }
             }

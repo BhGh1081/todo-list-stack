@@ -3,7 +3,7 @@ import { SideBar } from "@/app/ui/sideBar";
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { auth } from "@/auth";
-import { getTaskWithId } from "./lib/action";
+import { getUserTasks } from "./lib/action";
 import Tasks from "./ui/tasks";
 
 export default async function page() {
@@ -14,38 +14,26 @@ export default async function page() {
   let tasks;
 
   if (isLogedIn) {
-    tasks = await getTaskWithId(session?.user?.id as string)
-    console.log(tasks)
+    tasks = await getUserTasks(session?.user?.id as string)
   }
 
 
   return (
-    <div className="flex flex-col min-h-screen space-y-2 p-4">
-      <header className="h-auto relative">
-        <ListLogo />
-        <div className="flex items-center absolute right-4 top-5">
-          <Link href='/add-task'>
-            <PlusIcon className="md:hidden w-8 h-8" />
-          </Link>
-        </div>
-      </header>
-      <main className="flex flex-col md:flex-row flex-1 space-y-2 md:space-y-0 space-x-2 justify-between ">
+    <div className="flex flex-col w-full md:flex-row flex-1 space-y-2 md:space-y-0 space-x-2 justify-between">
+      <SideBar isLogedIn={isLogedIn} />
+      <div className="flex-3 felx bg-gray-50 rounded p-4">
+        {tasks ?
+          <Tasks tasks={tasks} /> :
+          <div className="flex flex-col space-y-6 items-center h-full justify-center">
+            <img
+              src='image/no-data.svg'
+              className="w-80"
+            />
+            <strong>No Tasks Yet</strong>
+          </div>
+        }
+      </div>
 
-        <SideBar isLogedIn={isLogedIn} />
-        <div className="flex-3 felx bg-gray-50 rounded p-4">
-          {tasks ?
-            <Tasks tasks={tasks} /> :
-            <div className="flex flex-col space-y-6 items-center h-full justify-center">
-              <img
-                src='image/no-data.svg'
-                className="w-80"
-               />
-              <strong>No Tasks Yet</strong>
-            </div>
-          }
-        </div>
-
-      </main>
     </div>
   );
 }
