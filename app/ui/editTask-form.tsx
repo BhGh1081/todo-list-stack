@@ -8,7 +8,7 @@ export default function EditTaskForm({id, categories, task} : {id: string, categ
     
 
     return (
-        <div className="max-w-[350px]">
+        <div className="w-full h-fit pr-5">
             <div className="w-full text-center pb-8 pt-5">
                 <strong>Edit task</strong>
             </div>

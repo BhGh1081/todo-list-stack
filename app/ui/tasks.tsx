@@ -31,10 +31,10 @@ export default function Tasks({ tasks }: { tasks: TaskType[] }) {
 
     return (
         <div className='w-full space-y-4 flex transition-all duration-500 ease-in-out'>
-            <div className={`hidden md:block overflow-hidden transition-all duration-500 ease-in-out ${showEdit ? 'md:w-1/2 opacity-100 translate-x-0' : 'w-0 opacity-0'}`}>
+            <div className={`hidden md:block overflow-hidden transition-all duration-500 ease-in-out ${showEdit ? 'bg-gray-100 md:w-1/2 opacity-100 translate-x-0' : 'w-0 opacity-0'}`}>
                 {showEdit && <EditTaskForm id={id} categories={categories} task={task} />}
             </div>
-            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${showEdit ? 'w-1/2' : 'w-full'}`}>
+            <div className={`overflow-hidden transition-all duration-500 ease-in-out hover:cursor-pointer ${showEdit ? 'w-1/2' : 'w-full'}`}>
                 {taskList.map((task) => (
                     <div
                         key={task.id}

@@ -16,7 +16,7 @@ export default function LoginForm() {
     return (
         <form action={formAction}>
             <div className="flex flex-col gap-10 items-center justify-center rounded-lg bg-gray-50">
-                <ListLogo className="w-full h-fit" />
+                <ListLogo className="w-full" />
                 <div className="flex flex-col max-w-[400px] space-y-15 items-center px-10">
                     <h1 className="text-foreground text-38px ">Login To Continue</h1>
                     <div>
@@ -43,7 +43,7 @@ export default function LoginForm() {
                             <ArrowLeftIcon className="w-6" /></button>
                         <div className="flex flex-raw gap-4 justify-center items-center">
                             <FcGoogle className="w-6 h-6" />
-                            <h1 className="hover:text-gray-500 hover:cursor-pointer">Login with google</h1>
+                            <h1 className="hover:text-primary hover:cursor-pointer">Login with google</h1>
                         </div>
                         <div aria-live="polite" aria-atomic="true"
                             className="flex h-8 items-end space-x-1">

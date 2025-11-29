@@ -1,7 +1,5 @@
 import { ListLogo } from "@/app/ui/listLogo";
 import { SideBar } from "@/app/ui/sideBar";
-import Link from "next/link";
-import { PlusIcon } from "@heroicons/react/24/solid";
 import { auth } from "@/auth";
 import { getUserTasks } from "./lib/action";
 import Tasks from "./ui/tasks";

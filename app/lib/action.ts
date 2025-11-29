@@ -5,7 +5,6 @@ import { AuthError } from "next-auth";
 import { auth } from "@/auth";
 import sql from "./db";
 import { redirect } from 'next/navigation';
-import { title } from 'process';
 
 
 interface categoriesType {
@@ -39,6 +38,10 @@ export async function authenticate(prevState: string | undefined, formData: Form
     }
 }
 
+export async function getUserWithEmail(email: string) {
+   const user = await sql `SELECT * FROM users WHERE email = ${email} `;
+   return user[0];
+}
 
 export async function addTask(prevState: void | undefined, formData: FormData) {
 
@@ -70,7 +73,7 @@ export async function getUserTasks(id: string) {
         const tasks = await sql`SELECT * FROM tasks WHERE user_id = ${id}`;
         return tasks;
     } catch(err) {
-        console.error(err, 'Database Error');
+        throw new Error('Invalid Email');
     }
 
 }

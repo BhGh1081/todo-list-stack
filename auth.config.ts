@@ -6,7 +6,7 @@ export const authConfig = {
   },
 
   callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
+    /* authorized({ auth, request: { nextUrl } }) {
       const isLogedIn = !!auth?.user;
       const isOnADD = nextUrl.pathname.startsWith('/add-task');
 
@@ -15,7 +15,7 @@ export const authConfig = {
 
       }
       return true;
-    },
+    }, */
 
     async jwt({ token, user }) {
       if (user) {

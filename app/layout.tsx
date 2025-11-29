@@ -20,7 +20,7 @@ export default function RootLayout({ children, }:
   return (
     <html lang="en">
       <body className={`${lusitana.variable} antialiased`}>
-        <div className="flex flex-col items-center justify-center h-screen space-y-2 p-4">
+        <div className="flex flex-col items-center justify-center h-screen space-y-2 md:p-4 p-2">
           <header className="h-auto w-full relative">
             <ListLogo />
             <div className="flex items-center absolute right-4 top-5">

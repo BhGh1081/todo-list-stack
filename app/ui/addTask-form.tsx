@@ -18,11 +18,11 @@ export default function AddTaskForm({ categories }: { categories: string[] }) {
 
 
     return (
-        <div className="items-center justify-center px-20 pt- bg-gray-200 flex-3">
+        <div className="items-center justify-center w-full md:px-20 px-4 rounded-md  bg-gray-200 flex-3">
             <div className="w-full text-center py-8">
                 <strong>Add New Task</strong>
             </div>
-            <form action={formAction}>
+            <form action={formAction} className="pb-10">
                 <div className="flex flex-col mb-6">
                     <label htmlFor="title">Enter new task title <span className="text-red-500">*</span></label>
                     <input
@@ -54,7 +54,7 @@ export default function AddTaskForm({ categories }: { categories: string[] }) {
                         name="date"
                         className="text-sm bg-white h-[40px] px-2 rounded focus:outline-purple-500 focus:outline-[1.5px]" />
                 </div>
-                <button className="w-full bg-primary p-3">Add</button>
+                <button className="w-full bg-primary p-3 md:my-7 rounded-md hover:bg-secondry">Add</button>
             </form>
         </div>
     )

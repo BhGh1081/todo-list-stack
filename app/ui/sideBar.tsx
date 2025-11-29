@@ -3,7 +3,7 @@
 import '@/app/ui/globals.css';
 import { useState } from 'react';
 import clsx from 'clsx';
-import LogButton from './log-button';
+import SignInButton from './signInButton';
 import SignOutAction from './signOutButton';
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 
@@ -29,11 +29,11 @@ export function SideBar({ isLogedIn }: { isLogedIn: boolean }) {
                 <div className='hidden w-full md:flex p-4 rounded-md bg-gray-50'>
                     {isLogedIn ?
                         <form action={SignOutAction} className='w-full'>
-                            <button className='flex w-full space-x-3 justify-center items-center border border-primary border-solid border-3 px-4 py-3 rounded-md transition-colos hover:bg-secondry whitespace-nowrap transition-all duration-300 ease-in-out'>
+                            <button className='flex w-full space-x-3 justify-center items-center border border-primary border-solid border-3 px-4 py-3 rounded-md transition-colos hover:bg-primary whitespace-nowrap transition-all duration-300 ease-in-out'>
                                 <strong>Sign Out</strong>
                                 <ArrowLeftIcon className='w-5' />
                             </button>
-                        </form> : <LogButton />}
+                        </form> : <SignInButton />}
                 </div>
             </div>
 
