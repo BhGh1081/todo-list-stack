@@ -1,37 +1,19 @@
-'use client';
-
+import { ListLogo } from "@/app/ui/listLogo";
 import { SideBar } from "@/app/ui/sideBar";
-//import { auth } from "@/auth";
+import { auth } from "@/auth";
 import { getUserTasks } from "./lib/action";
 import Tasks from "./ui/tasks";
-import { useSession } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 
-export default function page(/* {searchParams}: {searchParams: {status?: string}} */) {
-
-  /* const session = await auth();
-  const isLogedIn = !!session?.user; */
-
-  const searchParams = useSearchParams();
-  const status = searchParams?.get('status');
-  const [tasks, setTasks] = useState();
+export default async function page() {
 
 
-  const session = useSession();
-  const isLogedIn = !!session.data?.user;
-  const id = session.data?.user?.id;
-  console.log('session data:', session.data?.user);
+  const session = await auth();
+  const isLogedIn = !!session?.user
+  let tasks;
 
-  useEffect(() => {
-
-    if(isLogedIn){
-    getUserTasks(id as string, status as string).then(data => setTasks(data))
-      .then(() => console.log('tasks:', tasks))
-      .then(() => console.log('status', status))
-    }
-  },[])
-
+  if (isLogedIn) {
+    tasks = await getUserTasks(session?.user?.id as string)
+  }
 
 
   return (

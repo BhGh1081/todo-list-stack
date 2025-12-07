@@ -5,12 +5,12 @@ import bcrypt from 'bcrypt';
 import { getUserWithEmail } from "./app/lib/action";
 
 
-export const { auth, signIn, signOut} = NextAuth({
+export const { auth, signIn, signOut } = NextAuth({
 
   providers: [Credentials({
     async authorize(credentials) {
       const parsedCredential = z.
-        object({ email: z.email(), password: z.string() })
+        object({ email: z.string().email(), password: z.string() })
         .safeParse(credentials);
 
       if (parsedCredential.success) {

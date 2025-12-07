@@ -6,25 +6,12 @@ import clsx from 'clsx';
 import SignInButton from './signInButton';
 import SignOutAction from './signOutButton';
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
-import Link from 'next/link';
-import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
 
 export function SideBar({ isLogedIn }: { isLogedIn: boolean }) {
 
-    const [isSelect, setIsSelect] = useState<string>("");
-    const status = ['All', 'Completed', 'Pending'];
-    const searchParams = useSearchParams();
-    const pathname = usePathname();
-    const router = useRouter();
-
-
-    const handleClick = (t: string) => {
-        setIsSelect(t);
-        const params = new URLSearchParams(searchParams.toString());
-        params.set('status', t);
-        router.replace(`${pathname}?${params.toString()}`)
-    }
+    const [isSelect, setIsSelect] = useState<string>("")
+    const status = ['All', 'completed', 'incompleted']
 
     return (
         <div className="md:flex md:flex-1 flex-col w-full">
@@ -33,7 +20,7 @@ export function SideBar({ isLogedIn }: { isLogedIn: boolean }) {
                     status.map((t, index) =>
                         <div className={clsx("flex h-[48px] px-4 items-center bg-gray-50 text-foreground rounded-md hover:bg-cyan-50 hover:text-primary hover:cursor-pointer", { 'bg-teal-50 text-primary': t === isSelect })}
                             key={index}
-                            onClick={() => handleClick(t)} >
+                            onClick={() => setIsSelect(t)}>
                             <strong>{t}</strong>
                         </div>
                     )
