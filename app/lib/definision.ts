@@ -1,4 +1,5 @@
 
+
 export interface TaskType  {
     id: string,
     user_id: string,
@@ -7,4 +8,10 @@ export interface TaskType  {
     category: string,
     date: Date,
     completed: boolean
+}
+
+export interface SessionUserType {
+    email: string,
+    id: string,
+    name: string,
 }

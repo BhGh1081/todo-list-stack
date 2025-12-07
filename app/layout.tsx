@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { lusitana } from "./ui/font";
 import "./ui/globals.css";
-//import { Provider } from "./provider";
+import { NextAuthSessionProvider } from "./provider";
 import { ListLogo } from "./ui/listLogo";
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/24/solid";
+import { auth } from "@/auth";
 
 
 
@@ -14,12 +15,15 @@ export const metadata: Metadata = {
   description: "List of tasks",
 };
 
-export default function RootLayout({ children, }:
+export default async function RootLayout({ children, }:
   { children: React.ReactNode }) {
+
+  const session = await auth();
 
   return (
     <html lang="en">
       <body className={`${lusitana.variable} antialiased`}>
+        <NextAuthSessionProvider session={session}>
         <div className="flex flex-col items-center justify-center h-screen space-y-2 md:p-4 p-2">
           <header className="h-auto w-full relative">
             <ListLogo />
@@ -31,9 +35,12 @@ export default function RootLayout({ children, }:
             </div>
           </header>
           <main className="flex justify-center grow w-full">
-            {children}
+            
+              {children}
+            
           </main>
         </div>
+        </NextAuthSessionProvider>
       </body>
     </html>
   );
