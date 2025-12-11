@@ -5,6 +5,7 @@ import { AuthError } from "next-auth";
 import { auth } from "@/auth";
 import sql from "./db";
 import { redirect } from 'next/navigation';
+import { TaskType } from './definision';
 
 
 interface categoriesType {
@@ -67,10 +68,15 @@ export async function addTask(prevState: void | undefined, formData: FormData) {
 
 
 
-export async function getUserTasks(id: string) {
+export async function getUserTasks(id: string, status?: string) {
 
     try {
-        const tasks = await sql`SELECT * FROM tasks WHERE user_id = ${id}`;
+        let tasks = await sql`SELECT * FROM tasks WHERE user_id = ${id}`;
+        if(status === 'Completed'){
+            tasks = tasks.filter((task: TaskType) => task.completed === true)
+        }else if(status === 'Pending'){
+            tasks = tasks.filter((task: TaskType) => task.completed === false)
+        }//else if(status === 'All') return tasks
         return tasks;
     } catch(err) {
         throw new Error('Invalid Email');
