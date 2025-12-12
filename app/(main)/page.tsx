@@ -1,8 +1,8 @@
 import { ListLogo } from "@/app/ui/listLogo";
 import { SideBar } from "@/app/ui/sideBar";
 import { auth } from "@/auth";
-import { getUserTasks } from "./lib/action";
-import Tasks from "./ui/tasks";
+import { getUserTasks } from "../lib/action";
+import Tasks from "../ui/tasks";
 
 export default async function page() {
 

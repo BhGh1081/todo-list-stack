@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
-import { getCategories } from "../lib/action";
-import AddTaskForm from "../ui/addTask-form";
+import { getCategories } from "../../lib/action";
+import AddTaskForm from "../../ui/addTask-form";
 
 export default async function page() {
 

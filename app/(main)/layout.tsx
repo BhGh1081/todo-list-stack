@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { lusitana } from "./ui/font";
-import "./ui/globals.css";
-//import { Provider } from "./provider";
-import { ListLogo } from "./ui/listLogo";
+import { lusitana } from "../ui/font";
+import "@/app/ui/globals.css";
+import { ListLogo } from "../ui/listLogo";
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
@@ -14,13 +13,15 @@ export const metadata: Metadata = {
   description: "List of tasks",
 };
 
-export default function RootLayout({ children, }:
+export default async function RootLayout({ children, }:
   { children: React.ReactNode }) {
+
 
   return (
     <html lang="en">
       <body className={`${lusitana.variable} antialiased`}>
         <div className="flex flex-col items-center justify-center h-screen space-y-2 md:p-4 p-2">
+          
           <header className="h-auto w-full relative">
             <ListLogo />
             <div className="flex items-center absolute right-4 top-5">
