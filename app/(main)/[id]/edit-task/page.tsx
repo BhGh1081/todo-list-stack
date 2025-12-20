@@ -10,6 +10,6 @@ export default async function page(props: { params: Promise<{ id: string }> }) {
     const categories = await getCategories(id);
 
     return (
-        <EditTaskForm id={id} categories={categories} task={task} />
+        <EditTaskForm categories={categories} task={task} />
     )
 }

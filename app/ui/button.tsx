@@ -1,9 +1,11 @@
 'use client';
 
 import Link from "next/link";
-import { ArrowRightIcon, TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { ArrowRightIcon, ArrowLeftIcon, TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { deleteTask } from "../lib/action";
+import { useSession } from "next-auth/react";
+import { SignOutAction } from "../lib/action";
 
 export function SignInButton() {
 
@@ -16,7 +18,7 @@ export function SignInButton() {
 }
 
 
-export function Select({categories, defaultValue}:{categories: string[], defaultValue: string}) {
+export function Select({ categories, defaultValue }: { categories: string[], defaultValue: string }) {
 
     const [value, setValue] = useState('');
 
@@ -41,11 +43,11 @@ export function Select({categories, defaultValue}:{categories: string[], default
     )
 }
 
-export function DeleteTask({id}:{id: string}){
+export function DeleteTask({ id }: { id: string }) {
 
     const delTaskWithID = deleteTask.bind(null, id)
 
-    return(
+    return (
         <form action={delTaskWithID} className="h-7">
             <button className="hover:cursor-pointer">
                 <TrashIcon className="w-7 sm:w-7" />
@@ -54,12 +56,36 @@ export function DeleteTask({id}:{id: string}){
     )
 }
 
-export function EditTask({id}: {id:string}) {
+export function EditTask({ id }: { id: string }) {
 
-    
-return(
-    <Link href={`/${id}/edit-task`}>
-        <PencilSquareIcon className="w-7 sm:w-7 " />
-    </Link>
-)
+
+    return (
+        <Link href={`/${id}/edit-task`}>
+            <PencilSquareIcon className="w-7 sm:w-7 " />
+        </Link>
+    )
+}
+
+export function LogButton() {
+
+    const { data: session, status } = useSession();
+    console.log('session in logbutton:', session)
+
+    if (!session?.user) {
+        return (
+            <Link href="/login"
+                className="flex w-full gap-2 h-[47px] justify-center items-center text-white bg-primary px-4 py-3 rounded transition-colos hover:bg-secondry whitespace-nowrap">
+                <strong>Login</strong> <ArrowRightIcon className="hidden md:block w-5" />
+            </Link>
+        )
+    } else {
+        return (
+            <form action={SignOutAction} className='w-full'>
+                <button className='flex w-full h-[47px] space-x-3 justify-center items-center border border-primary border-solid border-3 px-4 py-3 rounded-md transition-colos hover:bg-primary whitespace-nowrap transition-all duration-300 ease-in-out'>
+                    <strong>Sign Out</strong>
+                    <ArrowLeftIcon className='hidden md:block w-5' />
+                </button>
+            </form>
+        )
+    }
 }

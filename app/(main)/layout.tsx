@@ -4,6 +4,7 @@ import "@/app/ui/globals.css";
 import { ListLogo } from "../ui/listLogo";
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/24/solid";
+import { Provider } from "../provider";
 
 
 
@@ -20,6 +21,7 @@ export default async function RootLayout({ children, }:
   return (
     <html lang="en">
       <body className={`${lusitana.variable} antialiased`}>
+        <Provider>
         <div className="flex flex-col items-center justify-center h-screen space-y-2 md:p-4 p-2">
           
           <header className="h-auto w-full relative">
@@ -35,6 +37,7 @@ export default async function RootLayout({ children, }:
             {children}
           </main>
         </div>
+        </Provider>
       </body>
     </html>
   );

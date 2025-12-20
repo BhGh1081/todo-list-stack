@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 import { getUserWithEmail } from "./app/lib/action";
 
 
-export const { auth, signIn, signOut } = NextAuth({
+export const { auth, signIn, signOut, handlers } = NextAuth({
 
   providers: [Credentials({
     async authorize(credentials) {

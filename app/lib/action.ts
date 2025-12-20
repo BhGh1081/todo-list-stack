@@ -1,8 +1,7 @@
 'use server';
 
-import { signIn } from '@/auth';
+import { signIn, signOut, auth } from '@/auth';
 import { AuthError } from "next-auth";
-import { auth } from "@/auth";
 import sql from "./db";
 import { redirect } from 'next/navigation';
 import { TaskType } from './definision';
@@ -128,4 +127,15 @@ export async function updateTask(formData: FormData){
         throw new Error('Update Faild');
     }
     redirect('/');
+}
+
+export async function SignOutAction() {
+    await signOut({redirectTo: '/'})
+}
+
+
+export async function getCategory(id: string){
+    const category = (await sql`SELECT DISTINCT category FROM tasks WHERE user_id=${id} AND category IS NOT NULL AND category <> ''`).map((r: {category: string}) => r.category);
+
+    return category;
 }

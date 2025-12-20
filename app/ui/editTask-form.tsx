@@ -4,7 +4,7 @@ import { updateTask } from "../lib/action";
 import Link from "next/link";
 
 
-export default function EditTaskForm({id, categories, task} : {id: string, categories: string[], task: TaskType}) {
+export default function EditTaskForm({categories, task} : {categories: string[], task: TaskType}) {
     
 
     return (
@@ -47,10 +47,10 @@ export default function EditTaskForm({id, categories, task} : {id: string, categ
                         defaultValue={new Date(task!.date).toISOString().split('T')[0]}
                         className="text-sm bg-white h-[40px] px-2 rounded focus:outline-purple-500 focus:outline-[1.5px]" />
                 </div>
-                <input type="hidden" name="id" value={id} />
+                <input type="hidden" name="id" value={task.id} />
                 <div className="flex gap-2">
                 <button className="w-full bg-primary p-3">Edit</button>
-                <Link href={'/'} className="w-full bg-primary p-3 text-center">Cancle</Link>
+                <Link href={'/'} className="md:hidden w-full bg-primary p-3 text-center">Cancle</Link>
                 </div>
             </form>
         </div>

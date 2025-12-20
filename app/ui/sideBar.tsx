@@ -4,7 +4,7 @@ import '@/app/ui/globals.css';
 import { useState } from 'react';
 import clsx from 'clsx';
 import SignInButton from './signInButton';
-import SignOutAction from './signOutButton';
+import { SignOutAction } from '../lib/action';
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
@@ -44,13 +44,13 @@ export function SideBar({ isLogedIn }: { isLogedIn: boolean }) {
                         </div>
                     )
                 }
-                <div className='hidden h-auto w-full grow rounded-md bg-gray-50 md:block'></div>
-                <div className='hidden w-full md:flex p-4 rounded-md bg-gray-50'>
+                <div className=' h-auto w-full grow rounded-md md:bg-gray-50'></div>
+                <div className='md:w-full md:flex md:p-4 rounded-md md:bg-gray-50'>
                     {isLogedIn ?
                         <form action={SignOutAction} className='w-full'>
-                            <button className='flex w-full space-x-3 justify-center items-center border border-primary border-solid border-3 px-4 py-3 rounded-md transition-colos hover:bg-primary whitespace-nowrap transition-all duration-300 ease-in-out'>
+                            <button className='flex w-full h-[47px] space-x-3 justify-center items-center border border-primary border-solid border-3 px-4 py-3 rounded-md transition-colos hover:bg-primary whitespace-nowrap transition-all duration-300 ease-in-out'>
                                 <strong>Sign Out</strong>
-                                <ArrowLeftIcon className='w-5' />
+                                <ArrowLeftIcon className='hidden md:block w-5' />
                             </button>
                         </form> : <SignInButton />}
                 </div>
