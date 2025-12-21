@@ -8,3 +8,9 @@ export interface TaskType  {
     date: Date,
     completed: boolean
 }
+
+export type CategoryContextType = {
+    categories: string[];
+    selectedCategory: string | null;
+    setSelectedCategory: (c: string | null) => void;
+}

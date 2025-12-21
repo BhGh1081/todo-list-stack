@@ -18,9 +18,12 @@ export function SideBar({ isLogedIn }: { isLogedIn: boolean }) {
     const params = new URLSearchParams(searchParams.toString());
 
     const handleStatus = (t: string) => {
-        setIsSelect(t);
+        //setIsSelect(t);
         params.set('status', t);
         router.replace(`${pathname}?${params}`)
+        const a = params.get('status');
+        setIsSelect(a as string);
+        console.log('selected:', isSelect)
 
     }
 

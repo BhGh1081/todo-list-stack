@@ -72,15 +72,15 @@ export default async function TasksPage() {
   return (
     <div className="flex flex-col w-full md:flex-row flex-1 space-y-2 md:space-y-0 space-x-2 justify-between">
       <SideBar isLogedIn={isLogedIn} />
-      <div className="flex flex-col space-y-2 flex-3">
+      {/*<div className="flex flex-col space-y-2 flex-3">
         <div className="md:flex md:space-x-2">
-          <Search />
+          <Search tasks={tasks} />
           <CategoryFilter selectList={category} />
           <input type="date" className="hidden md:block w-full h-[48px] bg-white text-gray-400 p-3 rounded-md flex-1" />
-        </div>
-        <div className="flex-1 felx bg-gray-50 rounded p-4">
+        </div> */}
+        <div className="flex-3 felx rounded">
           {tasks ?
-            <Tasks tasks={tasks} /> :
+            <Tasks tasks={tasks} categories={category} /> :
             <div className="flex flex-col space-y-6 items-center h-full justify-center">
               <img
                 src='image/no-data.svg'
@@ -91,6 +91,6 @@ export default async function TasksPage() {
           }
         </div>
       </div>
-    </div>
+    /* </div> */
   );
 }
