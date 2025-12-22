@@ -3,10 +3,14 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { TaskType } from "../lib/definision";
 import { useRouter, usePathname } from "next/navigation";
+import { useContext } from "react";
+import { DataContext } from "../providers/dataProvider";
 
 
-export default function Search({ tasks, setTaskList }: { tasks: TaskType[], setTaskList: (tasks: TaskType[]) => void }) {
+export default function Search( {setTaskList}: {setTaskList: (tasks: TaskType[]) => void }) {
 
+    const data = useContext(DataContext);
+    const tasks = data!.tasks;
     const router = useRouter();
     const pathname = usePathname();
 

@@ -1,9 +1,16 @@
+'use client';
+
 import { TaskType } from "../lib/definision";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useContext } from "react";
+import { DataContext } from "../providers/dataProvider";
 
-export default function CategoryFilter({ categories, setTaskList, tasks }:
-    { categories: string[], setTaskList: (a: TaskType[]) => void, tasks: TaskType[] }) {
+export default function CategoryFilter({setTaskList }:
+    { setTaskList: (a: TaskType[]) => void}) {
 
+        const data = useContext(DataContext);
+        const tasks = data!.tasks;
+        const categories = data!.categories;
         const searchParams = useSearchParams();
         const pathname = usePathname();
         const router = useRouter();

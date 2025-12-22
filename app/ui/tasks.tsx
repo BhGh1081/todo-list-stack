@@ -11,12 +11,18 @@ import Modal from "./taskModal";
 import ModalPortal from "./modalPortal";
 import Search from "./search";
 import CategoryFilter from "./categoryFilter";
-import { createContext } from "react";
+import DateFilter from "./dateFilter";
+import { useContext } from "react";
+import { DataContext } from "../providers/dataProvider";
 
 
 
 
-export default function Tasks({ tasks, categories }: { tasks: TaskType[], categories: string[] }) {
+export default function Tasks() {
+
+    const data = useContext(DataContext);
+    const tasks = data!.tasks;
+    const categories = data!.categories;
 
     const [taskList, setTaskList] = useState(tasks);
     const [showEdit, setShowEdit] = useState(false);
@@ -55,9 +61,9 @@ export default function Tasks({ tasks, categories }: { tasks: TaskType[], catego
     return (
         <div className='w-full h-full space-y-2 flex flex-col transition-all duration-500 ease-in-out'>
             <div className="md:flex md:space-x-2">
-                <Search tasks={tasks} setTaskList={setTaskList} />
-                <CategoryFilter categories={categories} setTaskList={setTaskList} tasks={tasks} />
-                <input type="date" className="hidden md:block w-full h-[48px] bg-white text-gray-400 p-3 rounded-md flex-1" />
+                <Search setTaskList={setTaskList} />
+                <CategoryFilter setTaskList={setTaskList} />
+                <DateFilter />
             </div>
             <div className="flex grow">
                 <div className={`hidden md:block overflow-hidden transition-all duration-500 ease-in-out ${showEdit ? 'bg-gray-50 md:w-1/2 opacity-100 translate-x-0' : 'w-0 opacity-0'}`}>

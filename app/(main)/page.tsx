@@ -3,12 +3,14 @@ import { SideBar } from "@/app/ui/sideBar";
 import { auth } from "@/auth";
 import { getUserTasks, getCategory } from "../lib/action";
 import Tasks from "../ui/tasks";
+import { DataProvider } from "../providers/dataProvider";
 
 
 
 
 // تابع جدا برای fetch دیتا و پردازش auth
 async function getPageData(userId?: string) {
+
   if (!userId) return { tasks: null, category: ['Select Item'] };
 
   const tasks = await getUserTasks(userId);
@@ -24,6 +26,7 @@ export default async function TasksPage() {
   const { tasks, category } = await getPageData(session?.user?.id);
 
   return (
+    <DataProvider tasks={tasks} categories={category}>
     <div className="flex flex-col w-full md:flex-row flex-1 space-y-2 md:space-y-0 space-x-2 justify-between">
       <SideBar isLogedIn={isLogedIn} />
       {/*<div className="flex flex-col space-y-2 flex-3">
@@ -34,7 +37,7 @@ export default async function TasksPage() {
         </div> */}
         <div className="flex-3 felx rounded">
           {tasks ?
-            <Tasks tasks={tasks} categories={category} /> :
+            <Tasks /> :
             <div className="flex flex-col space-y-6 items-center h-full justify-center">
               <img
                 src='image/no-data.svg'
@@ -45,6 +48,6 @@ export default async function TasksPage() {
           }
         </div>
       </div>
-    /* </div> */
+    </DataProvider>
   );
 }
