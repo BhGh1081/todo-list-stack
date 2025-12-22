@@ -25,14 +25,20 @@ export default function Tasks({ tasks, categories }: { tasks: TaskType[], catego
 
     const searchParams = useSearchParams();
     const status = searchParams.get('status');
+    const category = searchParams.get('category');
+
 
 
 
     useEffect(() => {
-        fetch(`/api/tasks?status=${status}`)
+
+        fetch(`/api/tasks?status=${status}&category=${category}`)
             .then((res) => res.json())
-            .then((data) => setTaskList(data));
-    }, [status])
+            .then((data) => {
+                setTaskList(data);
+                console.log('tasks after api:', data)
+            });
+    }, [status, category])
 
 
     const handleChecked = async (id: string) => {
@@ -50,7 +56,7 @@ export default function Tasks({ tasks, categories }: { tasks: TaskType[], catego
         <div className='w-full h-full space-y-2 flex flex-col transition-all duration-500 ease-in-out'>
             <div className="md:flex md:space-x-2">
                 <Search tasks={tasks} setTaskList={setTaskList} />
-                <CategoryFilter selectList={categories} />
+                <CategoryFilter categories={categories} setTaskList={setTaskList} tasks={tasks} />
                 <input type="date" className="hidden md:block w-full h-[48px] bg-white text-gray-400 p-3 rounded-md flex-1" />
             </div>
             <div className="flex grow">

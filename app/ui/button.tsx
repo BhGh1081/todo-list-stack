@@ -69,7 +69,6 @@ export function EditTask({ id }: { id: string }) {
 export function LogButton() {
 
     const { data: session, status } = useSession();
-    console.log('session in logbutton:', session)
 
     if (!session?.user) {
         return (

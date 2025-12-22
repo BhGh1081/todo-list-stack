@@ -11,12 +11,10 @@ export default function Search({data}) {
     useEffect(() => {
         const a = data.filter((t) => t.name.toLowerCase().includes(inputText))
         setFilterd(a)
-        console.log(filterd)
     },[inputText])
 
     const filter = (e) => {
         setInputText(e)
-        console.log('input text:', inputText)
         setShowList(true);
     }
 

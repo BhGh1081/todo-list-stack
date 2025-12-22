@@ -67,20 +67,28 @@ export async function addTask(prevState: void | undefined, formData: FormData) {
 
 
 
-export async function getUserTasks(id: string, status?: string) {
+export async function getUserTasks(id: string, status?: string, category?: string) {
+   
+   try {
+    let query = sql`
+      SELECT * FROM tasks
+      WHERE user_id = ${id}`;
 
-    try {
-        let tasks = await sql`SELECT * FROM tasks WHERE user_id = ${id}`;
-        if(status === 'Completed'){
-            tasks = tasks.filter((task: TaskType) => task.completed === true)
-        }else if(status === 'Pending'){
-            tasks = tasks.filter((task: TaskType) => task.completed === false)
-        }//else if(status === 'All') return tasks
-        return tasks;
-    } catch(err) {
-        throw new Error('Invalid Email');
+    if (status === "Completed") {
+      query = sql`${query} AND completed = true`;
+    } else if (status === "Pending") {
+      query = sql`${query} AND completed = false`;
     }
 
+    if (category && category !== 'null') {
+      query = sql`${query} AND category = ${category}`;
+    }
+
+    const tasks = await query;
+    return tasks;
+  } catch (err) {
+    throw new Error("Failed to fetch tasks");
+  }
 }
 
 export async function taskCheck(id:string) {

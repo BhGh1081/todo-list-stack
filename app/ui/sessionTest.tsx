@@ -13,7 +13,6 @@ export default function SessionTest(){
     if(!session){
         return <p>yoare not logged in</p>
     }
-    console.log(session.user)
 
     return(
         <p>you are logged in as <strong>{session.user?.email}</strong></p>
