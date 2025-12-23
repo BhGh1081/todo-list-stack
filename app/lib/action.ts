@@ -67,7 +67,7 @@ export async function addTask(prevState: void | undefined, formData: FormData) {
 
 
 
-export async function getUserTasks(id: string, status?: string, category?: string) {
+export async function getUserTasks(id: string, status?: string, category?: string, date?: string) {
    
    try {
     let query = sql`
@@ -82,6 +82,10 @@ export async function getUserTasks(id: string, status?: string, category?: strin
 
     if (category && category !== 'null') {
       query = sql`${query} AND category = ${category}`;
+    }
+
+    if(date && date !== 'null'){
+        query = sql`${query} AND Date(date) = ${date}`
     }
 
     const tasks = await query;

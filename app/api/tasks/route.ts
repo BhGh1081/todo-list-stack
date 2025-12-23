@@ -12,8 +12,9 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status") || undefined;
   const category = searchParams.get('category') || undefined;
+  const date = searchParams.get('date') || undefined;
 
 
-  const tasks = await getUserTasks(session.user.id, status, category);
+  const tasks = await getUserTasks(session.user.id, status, category, date);
   return Response.json(tasks);
 }

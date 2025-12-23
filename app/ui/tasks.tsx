@@ -32,19 +32,19 @@ export default function Tasks() {
     const searchParams = useSearchParams();
     const status = searchParams.get('status');
     const category = searchParams.get('category');
+    const date = searchParams.get('date');
 
 
 
 
     useEffect(() => {
 
-        fetch(`/api/tasks?status=${status}&category=${category}`)
+        fetch(`/api/tasks?status=${status}&category=${category}&date=${date}`)
             .then((res) => res.json())
             .then((data) => {
                 setTaskList(data);
-                console.log('tasks after api:', data)
             });
-    }, [status, category])
+    }, [status, category, date])
 
 
     const handleChecked = async (id: string) => {
@@ -63,7 +63,7 @@ export default function Tasks() {
             <div className="md:flex md:space-x-2">
                 <Search setTaskList={setTaskList} />
                 <CategoryFilter setTaskList={setTaskList} />
-                <DateFilter />
+                <DateFilter setTaskList={setTaskList} />
             </div>
             <div className="flex grow">
                 <div className={`hidden md:block overflow-hidden transition-all duration-500 ease-in-out ${showEdit ? 'bg-gray-50 md:w-1/2 opacity-100 translate-x-0' : 'w-0 opacity-0'}`}>
