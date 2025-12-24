@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext } from "react";
 import { TaskType } from "../lib/definision";
 import { SetTaskListType } from "../lib/definision";
@@ -5,15 +7,16 @@ import { SetTaskListType } from "../lib/definision";
 type ContextType = {
     tasks: TaskType[],
     categories: string[],
+    setTaskList : (a:TaskType[]) => void
 }
 
 export const DataContext = createContext<ContextType | null>(null);
 
-export function DataProvider ({tasks, categories, children}:{
-    tasks: TaskType[], categories:string[], children: React.ReactNode}) {
+export function DataProvider ({tasks, categories, setTaskList, children}:{
+    tasks: TaskType[], categories:string[], setTaskList:(a:TaskType[]) => void, children: React.ReactNode}) {
 
     return(
-        <DataContext value={{tasks, categories}}>
+        <DataContext value={{tasks, categories, setTaskList}}>
             {children}
         </DataContext>
     )
