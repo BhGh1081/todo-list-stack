@@ -2,18 +2,17 @@
 
 import { CalendarIcon, PencilSquareIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { taskCheck } from "../lib/action";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { DeleteTask, EditTask } from "./button";
-import { TaskType, CategoryContextType } from "../lib/definision";
+import { TaskType } from "../lib/definision";
 import EditTaskForm from "./editTask-form";
 import { useSearchParams } from "next/navigation";
-import Modal from "./taskModal";
-import ModalPortal from "./modalPortal";
+import Modal from "./modal";
+import Portal from "./portal";
 import Search from "./search";
 import CategoryFilter from "./categoryFilter";
 import DateFilter from "./dateFilter";
-import { useContext } from "react";
-import { DataContext } from "../providers/dataProvider";
+import { DataContext } from "../providers/providers";
 
 
 
@@ -60,10 +59,11 @@ export default function Tasks() {
 
     return (
         <div className='w-full h-full space-y-2 flex flex-col transition-all duration-500 ease-in-out'>
+
             <div className="md:flex md:space-x-2">
                 <Search setTaskList={setTaskList} />
-                <CategoryFilter setTaskList={setTaskList} />
-                <DateFilter setTaskList={setTaskList} />
+                <CategoryFilter className="hidden md:block flex-1" />
+                <DateFilter />
             </div>
             <div className="flex grow">
                 <div className={`hidden md:block overflow-hidden transition-all duration-500 ease-in-out ${showEdit ? 'bg-gray-50 md:w-1/2 opacity-100 translate-x-0' : 'w-0 opacity-0'}`}>
@@ -114,17 +114,11 @@ export default function Tasks() {
                 </div>
             </div>
             {showModal &&
-                <ModalPortal>
-                    <div className="flex justify-center items-center">
-                        <div className="absolute inset-0 bg-black/40" onClick={() => setShowModal(false)} />
-                        <div className="w-full h-[60%] md:w-[60%] md:h-[70%] bg-gray-100 px-10 pt-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg z-100">
-                            <XMarkIcon
-                                onClick={() => setShowModal(false)}
-                                className="w-[25px h-[25px] absolute right-15 z-100" />
-                            <Modal task={task} categories={categories} />
-                        </div>
-                    </div>
-                </ModalPortal>
+                <Portal>
+                    <Modal setShowModal={setShowModal}>
+                        <EditTaskForm task={task} categories={categories} />
+                    </Modal>
+                </Portal>
             }
         </div>
     )
