@@ -14,5 +14,3 @@ export type CategoryContextType = {
     selectedCategory: string | null;
     setSelectedCategory: (c: string | null) => void;
 }
-
-export type SetTaskListType =( a: TaskType[]) => void ;

@@ -3,14 +3,14 @@
 import { TaskType } from "../lib/definision";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
-import { DataContext } from "../providers/providers";
+import { DataContext } from "../providers/dataProvider";
 
-export default function CategoryFilter({className = ''} : {className?: string}) {
+export default function CategoryFilter({setTaskList }:
+    { setTaskList: (a: TaskType[]) => void}) {
 
         const data = useContext(DataContext);
         const tasks = data!.tasks;
         const categories = data!.categories;
-        const setTaskList = data!.setTaskList;
         const searchParams = useSearchParams();
         const pathname = usePathname();
         const router = useRouter();
@@ -27,11 +27,13 @@ export default function CategoryFilter({className = ''} : {className?: string}) 
         }
         params.set('category', category);
         router.push(`${pathname}?${params}`)
-
+        /* const filterParam = params.get('category');
+        const filterd = tasks.filter((task) => task.category === category);
+        setTaskList(filterd); */
     }
 
     return (
-        <div className={className}>
+        <div className="hidden md:block flex-1">
             <select
                 onChange={(e) => handleFilter(e.target.value)}
                 className="bg-white w-full h-[48px] rounded-md">

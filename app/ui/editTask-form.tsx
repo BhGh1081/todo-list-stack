@@ -2,15 +2,13 @@ import { Select } from "@/app/ui/button";
 import { TaskType } from "../lib/definision";
 import { updateTask } from "../lib/action";
 import Link from "next/link";
-import { useContext } from "react";
-import { DataContext } from "../providers/providers";
 
 
 export default function EditTaskForm({categories, task} : {categories: string[], task: TaskType}) {
     
 
     return (
-        <div className="w-full h-full p-4 bg-gray-200">
+        <div className="w-full h-fit pr-5">
             <div className="w-full text-center pb-8 pt-5">
                 <strong>Edit task</strong>
             </div>

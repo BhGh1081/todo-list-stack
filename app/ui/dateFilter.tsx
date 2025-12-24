@@ -1,17 +1,18 @@
 'use client';
 
 import { useContext, useState } from "react";
-import { DataContext } from "../providers/providers";
+import { DataContext } from "../providers/dataProvider";
+import { TaskType } from "../lib/definision";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-export default function DateFilter({className = ''} : {className?: string}) {
+export default function DateFilter({ setTaskList }: { setTaskList: (a: TaskType[]) => void }) {
 
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const router = useRouter();
     const data = useContext(DataContext)
     const tasks = data!.tasks;
-    const setTaskList = data!.setTaskList;
+    //let date = '';
     const [inputValue, setInputValue] = useState('')
 
     const filter = (date: string) => {
