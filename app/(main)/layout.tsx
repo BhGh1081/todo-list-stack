@@ -4,7 +4,7 @@ import "@/app/ui/globals.css";
 import { ListLogo } from "../ui/listLogo";
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/24/solid";
-import { SeProvider } from "../providers/provider";
+import { SeProvider } from "../providers/sessionProvider";
 
 
 

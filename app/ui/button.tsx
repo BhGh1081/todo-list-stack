@@ -6,6 +6,8 @@ import { useState } from "react";
 import { deleteTask } from "../lib/action";
 import { useSession } from "next-auth/react";
 import { SignOutAction } from "../lib/action";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function SignInButton() {
 
@@ -68,23 +70,28 @@ export function EditTask({ id }: { id: string }) {
 
 export function LogButton() {
 
+    const router = useRouter();
     const { data: session, status } = useSession();
 
     if (!session?.user) {
         return (
             <Link href="/login"
-                className="flex w-full gap-2 h-[47px] justify-center items-center text-white bg-primary px-4 py-3 rounded transition-colos hover:bg-secondry whitespace-nowrap">
+                className="hidden md:flex w-full gap-2 h-[47px] justify-center items-center text-white bg-primary px-4 py-3 rounded transition-colos hover:bg-secondry whitespace-nowrap">
                 <strong>Login</strong> <ArrowRightIcon className="hidden md:block w-5" />
             </Link>
         )
     } else {
         return (
-            <form action={SignOutAction} className='w-full'>
-                <button className='flex w-full h-[47px] space-x-3 justify-center items-center border border-primary border-solid border-3 px-4 py-3 rounded-md transition-colos hover:bg-primary whitespace-nowrap transition-all duration-300 ease-in-out'>
+            <div className="w-full" >
+                <button
+                    onClick={async () => {
+                        await signOut({ redirect: false });
+                        router.refresh();}}
+                    className='hidden md:flex w-full h-[47px] space-x-3 justify-center items-center border border-primary border-solid border-3 px-4 py-3 rounded-md transition-colos hover:bg-primary whitespace-nowrap transition-all duration-300 ease-in-out'>
                     <strong>Sign Out</strong>
                     <ArrowLeftIcon className='hidden md:block w-5' />
                 </button>
-            </form>
+            </div>
         )
     }
 }
