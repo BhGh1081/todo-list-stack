@@ -31,7 +31,7 @@ export default function Search( {setTaskList}: {setTaskList: (tasks: TaskType[])
                 id="search"
                 placeholder="Search"
                 onChange={(e) => filter(e)}
-                className="w-full h-[48px] bg-white text-gray-500 rounded-md p-3 focus:outline-none focus:border-2 focus:border-gray-200" />
+                className="w-full h-[48px] bg-input text-gray-400 rounded-md p-3 focus:outline-none focus:border-2 focus:border-gray-200" />
             <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2" />
         </div>
     )

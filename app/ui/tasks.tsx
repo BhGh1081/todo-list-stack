@@ -72,7 +72,7 @@ export default function Tasks() {
                         <EditTaskForm categories={categories} task={task} />
                     </div>
                 } */}
-            <div className={`bg-gray-50 rounded-md flex-1 overflow-y-auto transition-all duration-500 ease-in-out hover:cursor-pointer ${showEdit ? 'w-1/2' : 'w-full'}`}>
+            <div className={`bg-theme rounded-md flex-1 overflow-y-auto transition-all duration-500 ease-in-out hover:cursor-pointer ${showEdit ? 'w-1/2' : 'w-full'}`}>
                 {taskList.map((task) => (
                     <div
                         key={task.id}
@@ -96,7 +96,7 @@ export default function Tasks() {
                                         </button>
                                         <DeleteTask id={task.id} />
                                     </div>
-                                    <p className="hidden sm:block absolute right-35 bg-gray-200 px-2 rounded">{task.category}</p>
+                                    <p className="hidden sm:block absolute right-35 bg-gray px-2 rounded">{task.category}</p>
                                 </div>
                                 <p className="px-7 text-[14px] text-gray-500 max-w-1/2 truncate hover:intruncate">{task.description}</p>
 
@@ -109,7 +109,7 @@ export default function Tasks() {
                                         month: 'short',
                                         weekday: 'short'
                                     })}</p>
-                                <p className="sm:hidden absolute right-0 bg-gray-200 px-2 rounded">{task.category}</p>
+                                <p className="sm:hidden absolute right-0 bg-gray px-2 rounded">{task.category}</p>
                             </div>
                         </div>
                     </div>

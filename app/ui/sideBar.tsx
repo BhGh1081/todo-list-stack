@@ -12,6 +12,7 @@ import DateFilter from './dateFilter';
 import Portal from './portal';
 import { useContext } from 'react';
 import { DataContext } from '../providers/providers';
+import Toggle from './toggle';
 
 
 export function SideBar() {
@@ -37,7 +38,7 @@ export function SideBar() {
     return (
         <div className="md:flex md:flex-1 flex-col w-full">
             <div className="flex flex-row grow md:justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-                <div className="flex h-[48px] px-4 items-center bg-gray-50 rounded-md hover:bg-cyan-50 hover:text-primary hover:cursor-pointer"
+                <div className="flex h-[48px] px-4 items-center bg-theme rounded-md hover:bg-cyan-50 hover:text-primary hover:cursor-pointer"
                     onClick={() => {
                         params.delete('status');
                         router.replace(`${pathname}?${params}`)
@@ -48,19 +49,23 @@ export function SideBar() {
                 </div>
                 {
                     ['Completed', 'Pending'].map((t, index) =>
-                        <div className={clsx("flex h-[48px] px-4 items-center bg-gray-50 rounded-md hover:bg-cyan-50 hover:text-primary hover:cursor-pointer", { 'bg-teal-50 text-primary': t === isSelect })}
+                        <div className={clsx("flex h-[48px] px-4 items-center bg-theme rounded-md hover:bg-cyan-50 hover:text-primary hover:cursor-pointer", { 'bg-teal-50 text-primary': t === isSelect })}
                             key={index}
                             onClick={() => handleStatus(t)}>
                             <strong>{t}</strong>
                         </div>
                     )
                 }
-                <div className=' h-auto w-full grow rounded-md md:bg-gray-50'></div>
-                <div className='md:w-full md:flex md:p-4 rounded-md md:bg-gray-50'>
+                <div className='hidden md:flex h-[48px] px-4 items-center justify-between bg-theme rounded-md hover:text-primary hover:cursor-pointer"'>
+                    <strong>Dark Mode</strong>
+                    <Toggle className='w-10 h-5' />
+                </div>
+                <div className=' h-auto w-full grow rounded-md md:bg-theme'></div>
+                <div className='md:w-full md:flex md:p-4 rounded-md md:bg-theme'>
                     <LogButton className={'hidden md:flex w-full'} />
                     <div
                         onClick={() => setShowModal(!showModal)}
-                        className='md:hidden w-full h-[48px] flex bg-gray-50 justify-center items-center px-4 rounded-md'>
+                        className='md:hidden w-full h-[48px] flex bg-theme justify-center items-center px-4 rounded-md'>
                         <strong>Filter</strong>
                         <FaFilter className='w-7 h-5' />
                     </div>

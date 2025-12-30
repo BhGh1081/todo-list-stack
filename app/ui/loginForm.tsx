@@ -18,7 +18,7 @@ export default function LoginForm() {
 
     return (
         <form action={formAction}>
-            <div className="flex flex-col gap-10 items-center justify-center rounded-lg bg-gray-50">
+            <div className="flex flex-col gap-10 items-center justify-center rounded-lg bg-theme">
                 {/* <Header className="w-full" /> */}
                 <div className="flex w-full h-[150px] rounded-md items-end p-4 bg-primary gap-2">
                     <LuListTodo className="h-12 w-12" />
@@ -32,7 +32,7 @@ export default function LoginForm() {
                             name="email"
                             type="email"
                             placeholder="Enter Your Email" required
-                            className="w-full h-[40px] bg-white rounded p-2 mb-2 border border-gray-200 text-sm focus:outline-1" />
+                            className="w-full h-[40px] bg-input rounded p-2 mb-2 border border-gray-200 text-sm focus:outline-1" />
 
                         <input
                             id="password"
@@ -40,7 +40,7 @@ export default function LoginForm() {
                             type="password"
                             /* minLength={6} */
                             placeholder="Enter Your Password" required
-                            className="w-full h-[40px] bg-white rounded p-2 border border-gray-200 text-sm focus:outline-[1px]" />
+                            className="w-full h-[40px] bg-input rounded p-2 border border-gray-200 text-sm focus:outline-[1px]" />
                     </div>
                     <input type="hidden" name="redirectTo" value={callbackUrl} />
                     <div className="flex flex-col gap-12 items-center justify-center">

@@ -33,7 +33,7 @@ export default function CategoryFilter({className = ''} : {className?: string}) 
         <div className={className}>
             <select
                 onChange={(e) => handleFilter(e.target.value)}
-                className="bg-white w-full h-[48px] rounded-md focus:outline-0">
+                className="bg-input w-full h-[48px] rounded-md focus:outline-0">
                 <option value={''}>All</option>
                 {categories.map((category, index) =>
                     <option

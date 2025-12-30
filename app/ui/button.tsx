@@ -33,13 +33,13 @@ export function Select({ categories, defaultValue }: { categories: string[], def
                 placeholder="Enter or Select"
                 onChange={(e) => setValue(e.target.value)}
                 defaultValue={defaultValue}
-                className="bg-white w-full h-[40px] text-sm rounded px-2 focus:outline-purple-500 focus:outline-[1.5px]"
+                className="bg-input w-full h-[40px] text-sm rounded px-2 focus:outline-primary focus:outline-[1.5px]"
             />
             <datalist
                 id="categories">
                 {categories.map((t, index) =>
                     <option key={index} value={t}
-                        className="w-full bg-white" />)}
+                        className="w-full bg-input" />)}
             </datalist>
         </div>
 

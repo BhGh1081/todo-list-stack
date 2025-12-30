@@ -36,7 +36,7 @@ export default function DateFilter({className = ''} : {className?: string}) {
                 type="date"
                 value={inputValue}
                 onChange={(e) => filter(e.target.value)}
-                className="w-full h-[48px] bg-white text-gray-400 p-3 rounded-md flex-1" />
+                className="w-full h-[48px] bg-input text-gray-400 p-3 rounded-md flex-1" />
         </div>
     )
 }

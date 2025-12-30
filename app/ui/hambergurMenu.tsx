@@ -15,7 +15,7 @@ export default function Hambergur({ showHambergur, setShowHambergur, children }:
                 onClick={() => setShowHambergur(false)}
                 className={clsx("absolute inset-0 bg-black/40 z-199", showHambergur ? 'translate-x-0' : '-translate-x-full')}>
             </div>
-            <div className={clsx("flex flex-col p-2 absolute top-0 left-0 bg-gray-100 z-200 w-[70%] sm:w-[50%] h-screen shadow-lg transition-all duration-500 ease-in-out",
+            <div className={clsx("flex flex-col p-2 absolute top-0 left-0 bg-gray z-200 w-[70%] sm:w-[50%] h-screen shadow-lg transition-all duration-500 ease-in-out",
                 showHambergur ? 'translate-x-0' : '-translate-x-full'
             )}>
                 <div onClick={() => setShowHambergur(false)} className="flex bg-primary h-[150px] w-full p-2 rounded-md">
