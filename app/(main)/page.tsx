@@ -31,7 +31,7 @@ export default async function TasksPage() {
         {/* <div className="bg-red-500 flex-3 felx rounded"> */}
           {tasks ?
             <Tasks /> :
-            <div className="flex flex-col space-y-6 items-center h-full justify-center">
+            <div className="flex flex-col flex-3 space-y-6 items-center h-full justify-center">
               <img
                 src='image/no-data.svg'
                 className="w-80"
