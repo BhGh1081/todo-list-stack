@@ -5,7 +5,10 @@ import { useActionState } from "react";
 import { authenticate } from "../lib/action";
 import { useSearchParams } from "next/navigation";
 import { ArrowLeftIcon, ExclamationCircleIcon } from "@heroicons/react/24/outline";
-import { ListLogo } from "./listLogo";
+import { Header } from "./header";
+import { LuListTodo } from "react-icons/lu";
+import Link from "next/link";
+import '@/app/ui/globals.css';
 
 export default function LoginForm() {
 
@@ -16,9 +19,13 @@ export default function LoginForm() {
     return (
         <form action={formAction}>
             <div className="flex flex-col gap-10 items-center justify-center rounded-lg bg-gray-50">
-                <ListLogo className="w-full" />
+                {/* <Header className="w-full" /> */}
+                <div className="flex w-full h-[150px] rounded-md items-end p-4 bg-primary gap-2">
+                    <LuListTodo className="h-12 w-12" />
+                    <Link href='/'><strong className="text-[28px] md:text-[36px] font-mono text-center">Tasks</strong></Link>
+                </div>
                 <div className="flex flex-col max-w-[400px] space-y-15 items-center px-10">
-                    <h1 className="text-foreground text-38px ">Login To Continue</h1>
+                    <h1 className="text-38px ">Login To Continue</h1>
                     <div>
                         <input
                             id="email"

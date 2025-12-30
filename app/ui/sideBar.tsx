@@ -48,7 +48,7 @@ export function SideBar() {
                 </div>
                 {
                     ['Completed', 'Pending'].map((t, index) =>
-                        <div className={clsx("flex h-[48px] px-4 items-center bg-gray-50 text-foreground rounded-md hover:bg-cyan-50 hover:text-primary hover:cursor-pointer", { 'bg-teal-50 text-primary': t === isSelect })}
+                        <div className={clsx("flex h-[48px] px-4 items-center bg-gray-50 rounded-md hover:bg-cyan-50 hover:text-primary hover:cursor-pointer", { 'bg-teal-50 text-primary': t === isSelect })}
                             key={index}
                             onClick={() => handleStatus(t)}>
                             <strong>{t}</strong>
@@ -57,7 +57,7 @@ export function SideBar() {
                 }
                 <div className=' h-auto w-full grow rounded-md md:bg-gray-50'></div>
                 <div className='md:w-full md:flex md:p-4 rounded-md md:bg-gray-50'>
-                    <LogButton />
+                    <LogButton className={'hidden md:flex w-full'} />
                     <div
                         onClick={() => setShowModal(!showModal)}
                         className='md:hidden w-full h-[48px] flex bg-gray-50 justify-center items-center px-4 rounded-md'>
@@ -67,9 +67,18 @@ export function SideBar() {
                     {showModal &&
                         <Portal>
                             <Modal setShowModal={setShowModal}>
-                                <div className='flex justify-center items-center'>
-                                    <CategoryFilter setTaskList={setTaskList} />
-                                    {/* <DateFilter setTaskList={setTaskList} /> */}
+                                <div className='flex flex-col justify-center space-y-5 items-center p-4'>
+                                    <div className='flex flex-col w-[60%]'>
+                                        <label>Select Category</label>
+                                        <CategoryFilter className='w-full' />
+                                    </div>
+                                    <div className='flex flex-col w-[60%]'>
+                                        <label>Select Date</label>
+                                        <DateFilter className='w-full' />
+                                    </div>
+                                    <button
+                                    onClick={() => setShowModal(false)}
+                                    className='w-[60%] py-4 mt-5 rounded-md border-2 border-solid border-primary'>Done</button>
                                 </div>
                             </Modal>
                         </Portal>

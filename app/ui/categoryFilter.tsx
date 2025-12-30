@@ -10,7 +10,6 @@ export default function CategoryFilter({className = ''} : {className?: string}) 
         const data = useContext(DataContext);
         const tasks = data!.tasks;
         const categories = data!.categories;
-        const setTaskList = data!.setTaskList;
         const searchParams = useSearchParams();
         const pathname = usePathname();
         const router = useRouter();
@@ -18,9 +17,9 @@ export default function CategoryFilter({className = ''} : {className?: string}) 
 
     const handleFilter = (category: string) => {
         const params = new URLSearchParams(searchParams.toString());
+        console.log('category:', category)
 
         if(!category){
-            setTaskList(tasks)
             params.delete('category')
             router.replace(`${pathname}?${params}`)
             return;
@@ -34,7 +33,7 @@ export default function CategoryFilter({className = ''} : {className?: string}) 
         <div className={className}>
             <select
                 onChange={(e) => handleFilter(e.target.value)}
-                className="bg-white w-full h-[48px] rounded-md">
+                className="bg-white w-full h-[48px] rounded-md focus:outline-0">
                 <option value={''}>All</option>
                 {categories.map((category, index) =>
                     <option

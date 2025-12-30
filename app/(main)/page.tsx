@@ -1,4 +1,3 @@
-import { ListLogo } from "@/app/ui/listLogo";
 import { SideBar } from "@/app/ui/sideBar";
 import { auth } from "@/auth";
 import { getUserTasks, getCategory } from "../lib/action";
@@ -27,15 +26,9 @@ export default async function TasksPage() {
 
   return (
     <DataProvider tasks={tasks} categories={category}>
-    <div className="flex flex-col w-full md:flex-row flex-1 space-y-2 md:space-y-0 space-x-2 justify-between">
-      <SideBar />
-      {/*<div className="flex flex-col space-y-2 flex-3">
-        <div className="md:flex md:space-x-2">
-          <Search tasks={tasks} />
-          <CategoryFilter selectList={category} />
-          <input type="date" className="hidden md:block w-full h-[48px] bg-white text-gray-400 p-3 rounded-md flex-1" />
-        </div> */}
-        <div className="flex-3 felx rounded">
+      <div className="flex flex-col w-full md:flex-row flex-1 space-y-2 md:space-y-0 space-x-2 justify-between">
+        <SideBar />
+        {/* <div className="bg-red-500 flex-3 felx rounded"> */}
           {tasks ?
             <Tasks /> :
             <div className="flex flex-col space-y-6 items-center h-full justify-center">
@@ -46,7 +39,7 @@ export default async function TasksPage() {
               <strong>No Tasks Yet</strong>
             </div>
           }
-        </div>
+        {/* </div> */}
       </div>
     </DataProvider>
   );

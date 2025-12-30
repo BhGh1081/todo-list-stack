@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: lch(95.17% 0.52 290.36);
+  --background: #f1f1f2;
   --foreground: #494949;
   --primary: #64bfc9;
   --secondry: #00d0e7;
 
+}
+
+.dark {
+  background: #494949;
+  color: #f1f1f2;
 }
 
 @theme inline {
@@ -26,12 +31,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  /* :root {
+/* تنظیم خودکار دارک مود بر اساس سیستم کاربر */
+/* @media (prefers-color-scheme: dark) {
+  :root {
     --background: #303030;
     --foreground: #ededed;
-  } */
-}
+  }
+} */
 
 @media(max-width: 640px){
   html{

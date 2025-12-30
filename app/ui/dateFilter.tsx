@@ -11,31 +11,32 @@ export default function DateFilter({className = ''} : {className?: string}) {
     const router = useRouter();
     const data = useContext(DataContext)
     const tasks = data!.tasks;
-    const setTaskList = data!.setTaskList;
     const [inputValue, setInputValue] = useState('')
 
     const filter = (date: string) => {
 
+        const params = new URLSearchParams(searchParams.toString());
         setInputValue(date);
 
         if (!date) {
-            setTaskList(tasks);
+            params.delete('date');
+            router.push(`${pathname}?${params}`)
             return;
         }
 
-        const params = new URLSearchParams(searchParams.toString());
+        
         params.set('date', date)
         router.push(`${pathname}?${params}`)
     }
 
 
     return (
-        <div>
+        <div className={className}>
             <input
                 type="date"
                 value={inputValue}
                 onChange={(e) => filter(e.target.value)}
-                className="hidden md:block w-full h-[48px] bg-white text-gray-400 p-3 rounded-md flex-1" />
+                className="w-full h-[48px] bg-white text-gray-400 p-3 rounded-md flex-1" />
         </div>
     )
 }
