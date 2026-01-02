@@ -62,3 +62,9 @@ body {
     font-size: 12px;
   }
 }
+
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--dark) var(--foreground);
+}
