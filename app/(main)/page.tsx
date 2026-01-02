@@ -28,7 +28,6 @@ export default async function TasksPage() {
     <DataProvider tasks={tasks} categories={category}>
       <div className="flex flex-col w-full md:flex-row flex-1 space-y-2 md:space-y-0 space-x-2 justify-between">
         <SideBar />
-        {/* <div className="bg-red-500 flex-3 felx rounded"> */}
           {tasks ?
             <Tasks /> :
             <div className="flex flex-col flex-3 space-y-6 items-center h-full justify-center">
@@ -39,7 +38,6 @@ export default async function TasksPage() {
               <strong>No Tasks Yet</strong>
             </div>
           }
-        {/* </div> */}
       </div>
     </DataProvider>
   );

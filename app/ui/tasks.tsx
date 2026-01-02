@@ -76,7 +76,7 @@ export default function Tasks() {
                 {taskList.map((task) => (
                     <div
                         key={task.id}
-                        className="boeder-b boeder-b-solid border-b-[2px] border-b-gray-300 p-4 pl-8">
+                        className="boeder-b boeder-b-solid border-b-[3px] border-b-background p-4 pl-8">
                         <div className="space-y-3">
                             <div className="md:relative flex flex-col w-full">
                                 <div className="flex justify-between space-between items-center">

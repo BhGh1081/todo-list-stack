@@ -1,6 +1,5 @@
 'use client';
 
-import { TaskType } from "../lib/definision";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
 import { DataContext } from "../providers/providers";
@@ -8,7 +7,6 @@ import { DataContext } from "../providers/providers";
 export default function CategoryFilter({className = ''} : {className?: string}) {
 
         const data = useContext(DataContext);
-        const tasks = data!.tasks;
         const categories = data!.categories;
         const searchParams = useSearchParams();
         const pathname = usePathname();
@@ -33,7 +31,7 @@ export default function CategoryFilter({className = ''} : {className?: string}) 
         <div className={className}>
             <select
                 onChange={(e) => handleFilter(e.target.value)}
-                className="bg-input w-full h-[48px] rounded-md focus:outline-0">
+                className="bg-input w-full h-[48px] rounded-md focus:outline-0 p-2">
                 <option value={''}>All</option>
                 {categories.map((category, index) =>
                     <option
