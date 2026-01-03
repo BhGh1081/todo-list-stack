@@ -13,8 +13,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 
     return (
-        <html lang="en">
-            <body className={`${lusitana.variable} antialiased`}>
+        <html lang="en overflow-hidden">
+            <body className={`${lusitana.variable} antialiased overflow-hidden`}>
                 {children}
             </body>
         </html>

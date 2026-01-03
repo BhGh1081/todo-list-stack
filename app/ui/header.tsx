@@ -15,8 +15,7 @@ export function Header({ className }: { className?: string }) {
 
 
   return (
-    <div className="fixed top-0 w-full">
-      <div className={clsx('flex relative items-center font-lusitana py-3 px-4 md:pt-30 md:m-4 m-2 rounded-md bg-primary', className)}>
+      <div className={clsx('flex w-full relative items-center font-lusitana px-4 py-3 md:py-0 md:pt-30 rounded-md bg-primary', className)}>
         <div>
           <Logo setShowHambergur={setShowHambergur} />
           <Hambergur showHambergur={showHambergur} setShowHambergur={setShowHambergur}>
@@ -30,7 +29,6 @@ export function Header({ className }: { className?: string }) {
           <PlusIcon className="md:hidden align-self-center w-8 h-8" />
         </Link>
       </div>
-    </div>
   )
 }
 
