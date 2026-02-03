@@ -1,4 +1,6 @@
-import LoginForm from "../ui/loginForm"
+import LoginForm from "../ui/loginForm";
+
+export const dynamic = 'force-dynamic';
 
 export default function Page() {
 
