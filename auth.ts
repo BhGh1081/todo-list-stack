@@ -3,6 +3,8 @@ import Credentials from "next-auth/providers/credentials";
 import z from "zod";
 import bcrypt from 'bcrypt';
 import { getUserWithEmail } from "./app/lib/action";
+import type { JWT } from "next-auth/jwt";
+import type { Session } from "next-auth";
 
 
 export const { auth, signIn, signOut, handlers } = NextAuth({
@@ -30,16 +32,16 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
 
   callbacks: {
 
-    async jwt({ token, user }) {
+    async jwt({ token, user }: {token: JWT, user?:any}) {
       if (user) {
         token.id = user.id;
       }
       return token;
     },
 
-    async session({ session, token }) {
+    async session({ session, token }: {session: Session, token: JWT}) {
       if (token.id) {
-        session.user.id = token.id as string;
+        session.user!.id = token.id as string;
       }
       return session;
     }
