@@ -9,6 +9,7 @@
   --gray: #e5e7eb;
   --lightGray: #f3f4f6;
   --input: #feffff;
+  --over: rgba(214, 247, 250, 0.661);
 }
 
 :root.dark {
@@ -21,6 +22,7 @@
   --gray: #202020;
   --lightGray: #1e2939;
   --input: #1b1b1b;
+  --over: rgb(32, 32, 32);
 }
 
 body {
@@ -40,6 +42,7 @@ body {
   --color-gray: var(--gray);
   --color-lightGray: var(--lightGray);
   --color-input: var(--input);
+  --color-over: var(--over);
 }
 
 

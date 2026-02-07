@@ -38,7 +38,7 @@ export function SideBar() {
     return (
         <div className="md:flex md:flex-1 flex-col w-full">
             <div className="flex flex-row grow md:justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-                <div className="flex h-[48px] px-4 items-center bg-theme rounded-md hover:bg-cyan-50 hover:text-primary hover:cursor-pointer"
+                <div className="flex h-[48px] px-4 items-center bg-theme rounded-md hover:bg-over hover:text-primary hover:cursor-pointer"
                     onClick={() => {
                         params.delete('status');
                         router.replace(`${pathname}?${params}`)
@@ -49,7 +49,7 @@ export function SideBar() {
                 </div>
                 {
                     ['Completed', 'Pending'].map((t, index) =>
-                        <div className={clsx("flex h-[48px] px-4 items-center bg-theme rounded-md hover:bg-cyan-50 hover:text-primary hover:cursor-pointer", { 'bg-teal-50 text-primary': t === isSelect })}
+                        <div className={clsx("flex h-[48px] px-4 items-center bg-theme rounded-md hover:bg-over hover:text-primary hover:cursor-pointer", { 'bg-teal-50 text-primary': t === isSelect })}
                             key={index}
                             onClick={() => handleStatus(t)}>
                             <strong>{t}</strong>
