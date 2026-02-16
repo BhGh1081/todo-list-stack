@@ -37,7 +37,7 @@ export default function EditTaskForm({categories, task} : {categories: string[],
                         className="text-sm bg-input h-[40px] px-2 rounded focus:outline-purple-500 focus:outline-[1.5px]" />
                 </div>
                 <div className="flex flex-col mb-6">
-                    <label htmlFor="category">Select er enter a category</label>
+                    <label htmlFor="category">Select or enter a category</label>
                     <Select categories={categories} defaultValue={task.category} />
                 </div>
                 <div className="flex flex-col mb-6">
