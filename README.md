@@ -19,6 +19,10 @@ NextAuth
 🚀 Live Demo
 👉 https://todo.gholamidev.ir/
 
+## Demo Account:
+  Email: demo@test.com
+  Password: 12345678
+
 💻 GitHub Repository
 👉 https://github.com/BhGh1081/Todo-List
 

@@ -47,11 +47,9 @@ export default function LoginForm() {
                         <button aria-disabled={isPending}
                             className="flex gap-5 text-white bg-primary px-6 py-3 rounded transition-colos hover:bg-secondry hover:cursor-pointer">
                             Login
-                            <ArrowLeftIcon className="w-6" /></button>
-                        <div className="flex flex-raw gap-4 justify-center items-center">
-                            <FcGoogle className="w-6 h-6" />
-                            <h1 className="hover:text-primary hover:cursor-pointer">Login with google</h1>
-                        </div>
+                            <ArrowLeftIcon className="w-6" />
+                        </button>
+                        <h1 className="hover:text-primary cursor-pointer">Sign Up</h1>
                         <div aria-live="polite" aria-atomic="true"
                             className="flex h-8 items-end space-x-1">
                             {errorMessage && (
